@@ -9,7 +9,10 @@ android {
     defaultConfig {
         applicationId "dev.udey.stickers"
         minSdkVersion 16
-        targetSdkVersion 28
+        // FFMPeg uses text relocations, which is not supported on API 23+. Use an old API level to get FFMpeg working.
+        // https://android.googlesource.com/platform/bionic/+/master/android-changes-for-ndk-developers.md#text-relocations-enforced-for-api-level-23
+        // Also, https://www.reddit.com/r/androiddev/comments/64aspo/are_there_any_ffmpeg_alternatives_that_work_with/
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
