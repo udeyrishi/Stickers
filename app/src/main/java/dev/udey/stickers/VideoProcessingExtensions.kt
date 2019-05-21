@@ -61,6 +61,7 @@ private suspend fun executeCmd(scope: CoroutineScope, context: Context, command:
         context.ffmpeg.execute(cmd, object : ExecuteBinaryResponseHandler() {
             override fun onSuccess(s: String?) {
                 Log.i(LOG_TAG, "Command succeeded: $command")
+                Log.i(LOG_TAG, "$s")
                 scope.launch(Dispatchers.Default) {
                     resultChannel.send(FfmpegCommandResult.Success)
                 }
@@ -68,6 +69,7 @@ private suspend fun executeCmd(scope: CoroutineScope, context: Context, command:
 
             override fun onFailure(s: String?) {
                 Log.i(LOG_TAG, "Command failed: $command")
+                Log.i(LOG_TAG, "$s")
                 scope.launch(Dispatchers.Default) {
                     resultChannel.send(FfmpegCommandResult.Failure(RuntimeException("Command $command failed.")))
                 }
