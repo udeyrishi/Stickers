@@ -61,8 +61,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
                     }
                 }
                 true
-            }
-            false
+            } ?: false
         } else {
             false
         }
